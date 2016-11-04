@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="txt_lift_menu_news_chinese">新闻</string>
+    <string name="txt_lift_menu_news_english">NEWS</string>
+    <string name="txt_lift_menu_favorite_chinese">收藏</string>
+    <string name="txt_lift_menu_favorite_english">FAVORITE</string>
+    <string name="txt_lift_menu_local_chinese">本地</string>
+    <string name="txt_lift_menu_local_english">LOCAL</string>
+    <string name="txt_lift_menu_comment_chinese">跟帖</string>
+    <string name="txt_lift_menu_comment_english">COMMENT</string>
+    <string name="txt_lift_menu_photo_chinese">图片</string>
+    <string name="txt_lift_menu_photo_english">PHOTO</string>
+    <string name="txt_right_enter">立刻登陆</string>
+    <string name="et_register_email">请输入邮箱地址</string>
+    <string name="et_register_nickname">请输入昵称</string>
+    <string name="et_register_password">请输入密码</string>
+    <string name="btn_register_register">立即注册</string>
+    <string name="et_enter_nickname">请输入用户昵称</string>
+    <string name="et_enter_password">密码：6到16位个字符</string>
+    <string name="btn_register">注册</string>
+    <string name="btn_forgetPassword">忘记密码</string>
+    <string name="btn_enter">登录</string>
+</resources>
