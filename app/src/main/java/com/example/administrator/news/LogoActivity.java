@@ -17,6 +17,7 @@ public class LogoActivity extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences=this.getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         boolean flag=sharedPreferences.getBoolean(IS_FIRST,true);//判断是不是第一次进这个软件
+
         if (flag) {
             Intent intent=new Intent(LogoActivity.this,GuideActivity.class);
             startActivity(intent);

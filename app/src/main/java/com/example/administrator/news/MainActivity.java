@@ -29,6 +29,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     ImageView mImg_right_user;
     LinearLayout mLilt_lift_news;
     TextView mTxt_right_enter;
+
     //Button mBtn_right_register;
     //ListView mListView;
 //public static final String PATH="http://118.244.212.82:9092/newsClient/path/news_list?ver=1&subid=1&dir=1&nid=1&stamp=20140321&cnt=20";
@@ -46,6 +47,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         //ArrayList<String> mList = null;
 //        TestAdapter testAdapter=new TestAdapter(this);
 //        testAdapter.setData(m);
+
     }
 
     @Override
@@ -56,6 +58,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragLayout,fragment);
         fragmentTransaction.commit();
+
+
 
     }
 

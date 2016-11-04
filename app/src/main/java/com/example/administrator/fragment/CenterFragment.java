@@ -57,18 +57,7 @@ XListView mxListView;
         News news=new News();//调过来
         news.setOnLoadLister(this);//显示子条目内容
         news.execute(PATH);//网址
-        //XListView xlistView;
 
-//        mList=new ArrayList<NewsInfo>();
-//        for (int i = 0; i < 10; i++) {
-//            //mList.add("i="+i);
-//
-//        }
-//        mAdapter=new TestAdapter(getActivity());
-//
-//        mAdapter.setDa(mList);
-        //Log.e("======","++++++"+mData);
-//mxListView.setAdapter(mAdapter);
         mxListView.setPullLoadEnable(true);//上拉加载
         mxListView.setPullRefreshEnable(true);//下拉刷新
         mxListView.setXListViewListener(this);//监听

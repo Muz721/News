@@ -43,6 +43,7 @@ public class EnterFragment extends Fragment implements View.OnClickListener, Onl
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initer(view);
+
     }
 
     private void initer(View view) {
