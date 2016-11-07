@@ -17,6 +17,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.administrator.news.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import HttpInfo.HttpInfo;
 import util.HttpUtils;
 import util.OnladResponseListener;
@@ -79,7 +82,6 @@ public class EnterFragment extends Fragment implements View.OnClickListener, Onl
                 String password=mEt_password.getText().toString();
                 new HttpUtils().enterPost(HttpInfo.BASE_URI+HttpInfo.ENTER,nickName,password,this,mRequestQueue);
 
-        Toast.makeText(getActivity(),"用户名或密码错误！",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -88,5 +90,41 @@ public class EnterFragment extends Fragment implements View.OnClickListener, Onl
     @Override
     public void getResponse(String message) {
         Log.e("---=-=-=-=-=-=-=-=-=",message);
+        try {
+            JSONObject object=new JSONObject(message);
+            int status=object.getInt("status");
+            switch (status){
+                case 0:
+            String da=object.getString("data");
+            JSONObject data=new JSONObject(da);
+            int result=data.getInt("result");
+            switch (result){
+                case 0:
+        Toast.makeText(getActivity(),"登录成功！",Toast.LENGTH_SHORT).show();
+                    break;
+                case -1:
+                    Toast.makeText(getActivity(),"用户名或密码错误！",Toast.LENGTH_SHORT).show();
+                    break;
+                case -2:
+                    Toast.makeText(getActivity(),"限制登陆！",Toast.LENGTH_SHORT).show();
+                    break;
+                case -3:
+                    Toast.makeText(getActivity(),"异地登陆等异常！",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+                    break;
+                case -1:
+                    Toast.makeText(getActivity(),"用户名或密码错误！",Toast.LENGTH_SHORT).show();
+                    break;
+                case -2:
+                    Toast.makeText(getActivity(),"版本过低！",Toast.LENGTH_SHORT).show();
+                    break;
+                case -3:
+                    Toast.makeText(getActivity(),"服务器拒绝访问！",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

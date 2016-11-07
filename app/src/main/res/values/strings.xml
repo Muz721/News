@@ -20,4 +20,8 @@
     <string name="btn_register">注册</string>
     <string name="btn_forgetPassword">忘记密码</string>
     <string name="btn_enter">登录</string>
+    <string name="txt_news_message">资讯</string>
+    <string name="txt_news_comment_count">0</string>
+    <string name="txt_news_comment">跟帖</string>
+    <string name="txt_news_popupWindow_comment">添加收藏</string>
 </resources>
