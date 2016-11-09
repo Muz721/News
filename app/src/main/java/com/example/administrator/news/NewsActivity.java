@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.example.administrator.entic.OnLoadLister;
+import com.example.administrator.fragment.CenterFragment;
+
+import Sql.SqlUtil;
 
 /**
  * Created by Administrator on 2016/11/1.
@@ -23,6 +26,7 @@ public class NewsActivity extends BaseActivity implements OnLoadLister,View.OnCl
     WebView mWebView;
 ImageView mImg_favorite;
     PopupWindow mPopupWindow;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +100,32 @@ mImg_favorite= (ImageView) findViewById(R.id.img_popupWindow);
         switch (v.getId()){
             case R.id.img_popupWindow:
                 mPopupWindow.showAsDropDown(mImg_favorite);
+
+                //String ss=news.toString();
+
+
+                SqlUtil sqlUtil=new SqlUtil(this);
+                String summary = CenterFragment.mData.get(CenterFragment.s).getSummary();
+                String icon = CenterFragment.mData.get(CenterFragment.s).getIcon();
+                String stamp = CenterFragment.mData.get(CenterFragment.s).getStamp();
+                String title = CenterFragment.mData.get(CenterFragment.s).getTitle();
+                String nid = CenterFragment.mData.get(CenterFragment.s).getNid();
+                String link = CenterFragment.mData.get(CenterFragment.s).getLink();
+                String type = CenterFragment.mData.get(CenterFragment.s).getType();
+//                String s = mData.toString();
+//                try {
+//                    JSONObject object=new JSONObject(s);
+//                    String summary = object.getString("summary");
+//                    String icon = object.getString("icon");
+//                    String stamp = object.getString("stamp");
+//                    String title = object.getString("title");
+//                    String nid = object.getString("nid");
+//                    String link = object.getString("link");
+//                    String type = object.getString("type");
+                sqlUtil.collect(summary,icon,stamp,title,nid,link,type);
+
+
+
                 break;
         }
     }

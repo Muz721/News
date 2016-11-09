@@ -13,7 +13,8 @@ import com.example.administrator.news.R;
  * Created by Administrator on 2016/10/31.
  */
 
-public class LeftFragment extends Fragment{
+public class LeftFragment extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -23,5 +24,8 @@ public class LeftFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
+
+
 }

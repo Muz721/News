@@ -17,6 +17,7 @@ import com.example.administrator.entic.News;
 import com.example.administrator.entic.OnLoadLister;
 import com.example.administrator.fragment.CenterFragment;
 import com.example.administrator.fragment.EnterFragment;
+import com.example.administrator.fragment.FavoriteFragment;
 
 /**
  * Created by Administrator on 2016/10/27.
@@ -29,6 +30,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     ImageView mImg_right_user;
     LinearLayout mLilt_lift_news;
     TextView mTxt_right_enter;
+    LinearLayout mLine_lift_favorite;
 
     //Button mBtn_right_register;
     //ListView mListView;
@@ -123,7 +125,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
 
         mLilt_lift_news= (LinearLayout) findViewById(R.id.line_lift_menu_news);
+        mLine_lift_favorite= (LinearLayout) findViewById(R.id.line_lift_menu_favorite);
 mLilt_lift_news.setOnClickListener(this);
+        mLine_lift_favorite.setOnClickListener(this);
 
     }
 
@@ -162,6 +166,12 @@ mDrawerLayout.closeDrawer(Gravity.RIGHT);
                 FragmentTransaction fragmentNews = getSupportFragmentManager().beginTransaction();
                 fragmentNews.replace(R.id.fragLayout,new CenterFragment());
                 fragmentNews.commit();
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
+                break;
+            case R.id.line_lift_menu_favorite:
+                FragmentTransaction fragmentFavorite=getSupportFragmentManager().beginTransaction();
+                fragmentFavorite.replace(R.id.fragLayout,new FavoriteFragment());
+                fragmentFavorite.commit();
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             //case R.id.btn_register_register:

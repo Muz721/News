@@ -36,7 +36,8 @@ XListView mxListView;
     Handler mHandler;
     public static final String PATH="http://118.244.212.82:9092/newsClient/path/news_list?ver=1&subid=1&dir=1&nid=1&stamp=20140321&cnt=20";
 //    ArrayList<String>mList;
-    ArrayList<NewsInfo> mData;
+    public static ArrayList<NewsInfo> mData;
+    public static int s;
     TestAdapter mAdapter;
     Gson mGson;
     @Nullable
@@ -52,8 +53,8 @@ XListView mxListView;
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        mHandler=new Handler();
         mxListView= (XListView) view.findViewById(R.id.xlit_center_news);//绑定相应的ID
+        mHandler=new Handler();
         News news=new News();//调过来
         news.setOnLoadLister(this);//显示子条目内容
         news.execute(PATH);//网址
@@ -112,7 +113,8 @@ mHandler.postDelayed(new Runnable() {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String url=mData.get(position-1).getLink();//获取网址
+        s=position-1;
+        String url=mData.get(s).getLink();//获取网址
         Intent intent=new Intent(getActivity(),NewsActivity.class);//要跳转界面
 
         intent.putExtra("url",url);//携带数据跳转
