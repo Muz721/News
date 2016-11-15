@@ -20,6 +20,7 @@ android:text="@string/txt_news_message"
             android:layout_height="wrap_content"
             android:gravity="center"/>
         <LinearLayout
+            android:id="@+id/Line_news_comment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
             <TextView

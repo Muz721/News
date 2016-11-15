@@ -6,8 +6,8 @@
     android:background="@drawable/bg_slidingmenu_left">
 <ImageView
     android:id="@+id/img_right_user"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
     android:src="@drawable/biz_pc_main_info_profile_avatar_bg_dark"
     android:layout_gravity="center_horizontal"
     android:adjustViewBounds="false" />

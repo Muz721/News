@@ -62,6 +62,7 @@ public class LogoActivity extends Activity {
                         @Override
                         public void run() {
                             Intent intent=new Intent(LogoActivity.this,MainActivity.class);
+
                             startActivity(intent);
                             finish();
                         }

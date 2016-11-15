@@ -1,6 +1,5 @@
 package com.example.administrator.fragment;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,8 +21,6 @@ import HttpInfo.HttpInfo;
 import util.HttpUtils;
 import util.OnladResponseListener;
 
-import static android.content.Context.MODE_PRIVATE;
-
 /**
  * Created by Administrator on 2016/11/3.
  */
@@ -34,7 +31,7 @@ public class RegisterFragment extends Fragment implements OnladResponseListener,
     EditText mEt_password;
     Button mButton_register;
     RequestQueue mRequestQueue;
-    public static final String PREFS_NAME="config";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,16 +60,16 @@ mButton_register= (Button) view.findViewById(R.id.btn_register_register);
             JSONObject arr=new JSONObject(data);
 //            JSONObject data=arr.getJSONObject(1);
 //            JSONObject data1=arr.getJSONObject(2);
-            String token1=arr.getString("result");
+            String result=arr.getString("result");
             String token=arr.getString("token");
-            String s=arr.getString("explain");
-        SharedPreferences sharedPreferences=this.getActivity().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token",token);
-            editor.putString("explain",s);
-            editor.putString("explain",token1);
-        Log.e("fffffffffff","=============="+editor.putString("explain",token1));
-        editor.commit();
+            String explain=arr.getString("explain");
+//        SharedPreferences sharedPreferences=this.getActivity().getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("token",token);
+//            editor.putString("explain",explain);
+//            editor.putString("result",result);
+//        Log.e("fffffffffff","=============="+editor.putString("explain",result));
+//        editor.commit();
         } catch (JSONException e) {
             e.printStackTrace();
         }

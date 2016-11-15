@@ -116,8 +116,10 @@ mHandler.postDelayed(new Runnable() {
         s=position-1;
         String url=mData.get(s).getLink();//获取网址
         Intent intent=new Intent(getActivity(),NewsActivity.class);//要跳转界面
-
+intent.putExtra("position",s);
         intent.putExtra("url",url);//携带数据跳转
-        startActivity(intent);//开始跳转
+        startActivityForResult(intent,1);
+        //startActivity(intent);//开始跳转
+
     }
 }

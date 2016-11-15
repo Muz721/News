@@ -24,4 +24,10 @@
     <string name="txt_news_comment_count">0</string>
     <string name="txt_news_comment">跟帖</string>
     <string name="txt_news_popupWindow_comment">添加收藏</string>
+    <string name="txt_user">我的账号</string>
+    <string name="txt_user_integral">积分:</string>
+    <string name="btn_user_back">退出登录</string>
+    <string name="txt_user_log">登录日志</string>
+    <string name="txt_user_comment">跟贴数统计:</string>
+    <string name="txt_comment">评论</string>
 </resources>

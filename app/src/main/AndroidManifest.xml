@@ -21,6 +21,8 @@
   <activity android:name=".GuideActivity"></activity>
 <activity android:name=".MainActivity"></activity>
         <activity android:name=".NewsActivity"></activity>
+        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".CommentActivity"></activity>
     </application>
 
 </manifest>

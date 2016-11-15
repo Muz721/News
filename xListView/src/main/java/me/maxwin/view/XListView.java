@@ -8,7 +8,6 @@
  */
 package me.maxwin.view;
 
-import me.maxwin.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -22,6 +21,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
+
+import me.maxwin.R;
 
 public class XListView extends ListView implements OnScrollListener {
 
@@ -358,6 +359,8 @@ public class XListView extends ListView implements OnScrollListener {
 	public void setXListViewListener(IXListViewListener l) {
 		mListViewListener = l;
 	}
+
+
 
 	/**
 	 * you can listen ListView.OnScrollListener or this one. it will invoke

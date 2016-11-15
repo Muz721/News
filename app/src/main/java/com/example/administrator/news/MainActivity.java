@@ -1,8 +1,11 @@
 package com.example.administrator.news;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.administrator.adapter.NewsAdapter;
 import com.example.administrator.entic.News;
 import com.example.administrator.entic.OnLoadLister;
@@ -115,9 +119,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         //mListView= (ListView) findViewById(R.id.list_news);
         mBtn_user.setOnClickListener(this);
         mBtn_menu.setOnClickListener(this);
-
         mImg_right_user= (ImageView) findViewById(R.id.img_right_user);
+
         mImg_right_user.setOnClickListener(this);
+SharedPreferences preferences=getSharedPreferences("user",MODE_PRIVATE);
+        String portration=preferences.getString("portration","");
+        int status=preferences.getInt("status",-1);
+        int result=preferences.getInt("result",-1);
+        Log.e("------","portration="+portration);
+        if(status==0&&result==0){
+
+        Glide.with(this).load(portration).into(mImg_right_user);
+        }
         mTxt_right_enter= (TextView) findViewById(R.id.txt_right_enter);
         mTxt_right_enter.setOnClickListener(this);
 //        mBtn_right_register= (Button) findViewById(R.id.btn_register);
@@ -157,10 +170,19 @@ mDrawerLayout.closeDrawer(Gravity.RIGHT);
 
             case R.id.img_right_user:
             case R.id.txt_right_enter:
+                SharedPreferences preferences=this.getSharedPreferences("user",MODE_PRIVATE);
+                int status=preferences.getInt("status",-1);
+                int result=preferences.getInt("result",-1);
+                if(status==0&&result==0){
+                    Intent intent=new Intent(MainActivity.this,UserActivity.class);
+                    startActivity(intent);
+                }else{
+
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragLayout,new EnterFragment());
                 fragmentTransaction.commit();
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                }
                 break;
             case R.id.line_lift_menu_news:
                 FragmentTransaction fragmentNews = getSupportFragmentManager().beginTransaction();

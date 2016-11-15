@@ -1,5 +1,7 @@
 package com.example.administrator.fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.administrator.news.R;
+import com.example.administrator.news.UserActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +26,8 @@ import org.json.JSONObject;
 import HttpInfo.HttpInfo;
 import util.HttpUtils;
 import util.OnladResponseListener;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Administrator on 2016/11/3.
@@ -36,6 +41,14 @@ public class EnterFragment extends Fragment implements View.OnClickListener, Onl
     Button mBtn_enter;
     DrawerLayout mDrawerLayout;
     RequestQueue mRequestQueue;
+
+//    public static final String PREFS_NAME="config";
+    SharedPreferences mSharedPreferences;
+    int mResult;
+int mStatus;
+    String mToken;
+    String mMes;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,11 +78,69 @@ public class EnterFragment extends Fragment implements View.OnClickListener, Onl
         mDrawerLayout= (DrawerLayout) view.findViewById(R.id.drawerLayout);
     }
 
+
+
+    @Override
+    public void getResponse(String message) {
+        Log.e("---=-=-=-=-=-=-=-=-=",message);
+        try {
+             mSharedPreferences=this.getActivity().getSharedPreferences("user",MODE_PRIVATE);
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+
+            JSONObject object=new JSONObject(message);
+             int status=object.getInt("status");
+if (status==-1)  {
+        Log.e("-------","status==++++++++++++++"+status);
+        Toast.makeText(getActivity(),"用户名或密码错误！",Toast.LENGTH_SHORT).show();
+
+                }
+
+            Log.e("-------","status=="+status);
+            String da=object.getString("data");
+            String mes=object.getString("message");
+            editor.putString("message",mes);
+
+
+            JSONObject data=new JSONObject(da);
+            int result=data.getInt("result");
+                    String token=data.getString("token");
+            Log.e("ffffffffffffffffffffff",""+token);
+            editor.putInt("status",status);
+            editor.putInt("result",result);
+            editor.putString("token",token);
+Log.e("-----------------",""+editor.putString("token",token));
+            Log.e("-----------------","sssssssss"+editor.putInt("result",result));
+            editor.commit();
+            mStatus= mSharedPreferences.getInt("status",-1);
+             mResult= mSharedPreferences.getInt("result",-1);
+             mToken=mSharedPreferences.getString("token","");
+            mMes=mSharedPreferences.getString("message","");
+            Log.e("========","++++++"+mStatus);
+            Log.e("====","mToken=="+mToken);
+                Log.e("-------------------","mMes========="+status);
+            if(status==0
+                    //&&mResult==0
+                    ){
+
+        Toast.makeText(getActivity(),"登录成功！",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(), UserActivity.class);
+                    startActivity(intent);
+                Log.e("-------------------","mMes========="+mMes);
+            }
+
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_register:
-            
+
                 FragmentTransaction fragmentRegister = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentRegister.replace(R.id.fragLayout,new RegisterFragment());
                 fragmentRegister.commit();
@@ -78,53 +149,14 @@ public class EnterFragment extends Fragment implements View.OnClickListener, Onl
             case R.id.btn_forgetPassword:
                 break;
             case R.id.btn_enter:
+
                 String nickName=mEt_nickame.getText().toString();
                 String password=mEt_password.getText().toString();
                 new HttpUtils().enterPost(HttpInfo.BASE_URI+HttpInfo.ENTER,nickName,password,this,mRequestQueue);
 
+//Log.e("sssssssssss","aaaaaaaaaaaaaaaaaaaaaa====="+mStatus);
+
                 break;
-        }
-    }
-
-
-    @Override
-    public void getResponse(String message) {
-        Log.e("---=-=-=-=-=-=-=-=-=",message);
-        try {
-            JSONObject object=new JSONObject(message);
-            int status=object.getInt("status");
-            switch (status){
-                case 0:
-            String da=object.getString("data");
-            JSONObject data=new JSONObject(da);
-            int result=data.getInt("result");
-            switch (result){
-                case 0:
-        Toast.makeText(getActivity(),"登录成功！",Toast.LENGTH_SHORT).show();
-                    break;
-                case -1:
-                    Toast.makeText(getActivity(),"用户名或密码错误！",Toast.LENGTH_SHORT).show();
-                    break;
-                case -2:
-                    Toast.makeText(getActivity(),"限制登陆！",Toast.LENGTH_SHORT).show();
-                    break;
-                case -3:
-                    Toast.makeText(getActivity(),"异地登陆等异常！",Toast.LENGTH_SHORT).show();
-                    break;
-            }
-                    break;
-                case -1:
-                    Toast.makeText(getActivity(),"用户名或密码错误！",Toast.LENGTH_SHORT).show();
-                    break;
-                case -2:
-                    Toast.makeText(getActivity(),"版本过低！",Toast.LENGTH_SHORT).show();
-                    break;
-                case -3:
-                    Toast.makeText(getActivity(),"服务器拒绝访问！",Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 }

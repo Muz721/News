@@ -42,7 +42,7 @@ public class FavoriteFragment extends Fragment implements OnLoadLister,AdapterVi
 
         NewsAdapter adapter=new NewsAdapter(getActivity());
         SqlUtil sqlUtil=new SqlUtil(getActivity());
-mData=sqlUtil.query();
+         mData=sqlUtil.query();
         Log.e("============",""+mData);
         //sc = SqlUtil.query();
         adapter.setData(mData);
